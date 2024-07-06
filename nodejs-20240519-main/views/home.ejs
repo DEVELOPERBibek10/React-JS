@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .container{
+            padding:0 5rem 5rem;
+        }
+      table {
+        border-collapse: collapse;
+      }
+
+      .filter{
+        margin: 1rem  0 0;
+
+      }
+
+      .grid{
+        margin: 1rem 0;
+        display: grid;
+        grid-template-columns: auto auto;
+      }
+
+      table,
+      td {
+        border: 1px solid;
+      }
+
+      td {
+        padding: 0.5rem 1rem;
+      }
+
+      .pagination a{
+            padding: 0.5rem 1rem;
+            background-color: rgb(112, 235, 240);
+            border-radius: 3px;
+            color: black;
+      }
+    </style>
+    <script>
+        function onLimitChange() {
+            const limitElement = document.getElementById("limit");
+            const limitValue = limitElement.value;
+
+            const url = new URL(window.location.href);
+
+            url.searchParams.set("limit",limitValue );
+
+            window.location.href = url.toString();
+        }
+
+        function sortByPrice(order){
+            const url = new URL(window.location.href);
+
+            url.searchParams.set("sort", JSON.stringify({price:order}) );
+
+            window.location.href = url.toString();
+        }
+
+        function gotoPage(page){
+            const url = new URL(window.location.href);
+
+            url.searchParams.set("page", page );
+
+            window.location.href = url.toString();
+        }
+
+        function filterByCategory() {
+            const filterElement = document.getElementById("filter");
+            const filterValue = filterElement.value;
+
+            const url = new URL(window.location.href);
+
+            url.searchParams.set("filters", JSON.stringify({category:filterValue}) );
+
+            window.location.href = url.toString();
+        }
+    </script>
+  </head>
+  <body>
+      <div class="container">
+        <h1>Welcome <%= user %></h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <td><b>S.N</b></td>
+                    <td><b>Name</b></td>
+                    <td><b>Brand</b></td>
+                    <td><b>Category</b>
+                        <div class="filter">
+                            <select name="filter" id="filter" onchange="filterByCategory()">
+                                <option>Select Category</option>
+                                <option value="Smartphone">Smartphone</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="skincare">Skincare</option>
+                                <option value="fragrances">Fragrances</option>
+                                <option value="Laptop">Laptop</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td ><b>Price</b>
+                   <div>
+                    <button onclick="sortByPrice(1)">A</button>
+                    <button onclick="sortByPrice(-1)">D</button>
+                   </div>
+                    </td>
+                    <td ><b>Created At</b>
+                </tr>
+            </thead>
+            <% for(var i=0;i<products.length;i++) { %>
+                <tr>
+                    <td><%= i+1 %> </td>
+                    <td><%= products[i].name %> </td>
+                    <td><%= products[i].brand %> </td>
+                    <td><%= products[i].category %> </td>
+                    <td><%= products[i].price %> </td>
+                    <td><%= products[i].createdAt %> </td>
+                </tr>
+            <% } %>
+        </table>
+
+        <div class="grid">
+            <div class="pagination">
+                <a onclick="gotoPage(1)">1</a>
+                <a onclick="gotoPage(2)">2</a>
+                <a onclick="gotoPage(3)">3</a>
+            </div>
+    
+            <div class="limit">
+                <select name="limit" id="limit" onchange="onLimitChange()">
+                    <option>Select Limit</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

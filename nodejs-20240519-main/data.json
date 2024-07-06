@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Wireless Headphones",
+    "brand": "Sony",
+    "category": "Electronics",
+    "price": 199.99
+  },
+  {
+    "name": "Running Shoes",
+    "brand": "Nike",
+    "category": "Clothing & Shoes",
+    "price": 129.95
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "brand": "Razer",
+    "category": "Electronics",
+    "price": 149.0
+  },
+  {
+    "name": "Gaming Monitor",
+    "brand": "Asus",
+    "category": "Electronics",
+    "price": 349.99
+  },
+  {
+    "name": "Smart Thermostat",
+    "brand": "Nest",
+    "category": "Home & Garden",
+    "price": 229.0
+  },
+  {
+    "name": "iPhone 9",
+    "price": 549,
+    "brand": "Apple",
+    "category": "smartphones"
+  },
+  {
+    "name": "iPhone X",
+    "price": 899,
+    "brand": "Apple",
+    "category": "smartphones"
+  },
+  {
+    "name": "Samsung Universe 9",
+    "price": 1249,
+    "brand": "Samsung",
+    "category": "smartphones"
+  },
+  {
+    "name": "OPPOF19",
+    "price": 280,
+    "brand": "OPPO",
+    "category": "smartphones"
+  },
+  {
+    "name": "Huawei P30",
+    "price": 499,
+    "brand": "Huawei",
+    "category": "smartphones"
+  },
+  {
+    "name": "MacBook Pro",
+    "price": 1749,
+    "brand": "Apple",
+    "category": "laptops"
+  },
+  {
+    "name": "Samsung Galaxy Book",
+    "price": 1499,
+    "brand": "Samsung",
+    "category": "laptops"
+  },
+  {
+    "name": "Microsoft Surface Laptop 4",
+    "price": 1499,
+    "brand": "Microsoft Surface",
+    "category": "laptops"
+  },
+  {
+    "name": "Infinix INBOOK",
+    "price": 1099,
+    "brand": "Infinix",
+    "category": "laptops"
+  },
+  {
+    "name": "HP Pavilion 15-DK1056WM",
+    "price": 1099,
+    "brand": "HP Pavilion",
+    "category": "laptops"
+  },
+  {
+    "name": "perfume Oil",
+    "price": 13,
+    "brand": "Impression of Acqua Di Gio",
+    "category": "fragrances"
+  },
+  {
+    "name": "Brown Perfume",
+    "price": 40,
+    "brand": "Royal_Mirage",
+    "category": "fragrances"
+  },
+  {
+    "name": "Fog Scent Xpressio Perfume",
+    "price": 13,
+    "brand": "Fog Scent Xpressio",
+    "category": "fragrances"
+  },
+  {
+    "name": "Non-Alcoholic Concentrated Perfume Oil",
+    "price": 120,
+    "brand": "Al Munakh",
+    "category": "fragrances"
+  },
+  {
+    "name": "Eau De Perfume Spray",
+    "price": 30,
+    "brand": "Lord - Al-Rehab",
+    "category": "fragrances"
+  },
+  {
+    "name": "Hyaluronic Acid Serum",
+    "price": 19,
+    "brand": "L'Oreal Paris",
+    "category": "skincare"
+  },
+  {
+    "name": "Tree Oil 30ml",
+    "price": 12,
+    "brand": "Hemani Tea",
+    "category": "skincare"
+  },
+  {
+    "name": "Oil Free Moisturizer 100ml",
+    "price": 40,
+    "brand": "Dermive",
+    "category": "skincare"
+  },
+  {
+    "name": "Skin Beauty Serum.",
+    "price": 46,
+    "brand": "ROREC White Rice",
+    "category": "skincare"
+  }
+]

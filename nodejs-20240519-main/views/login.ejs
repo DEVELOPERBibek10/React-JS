@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .form-control {
+        margin: 1rem 0;
+      }
+
+      .form-control label{
+        margin-right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login page</h1>
+
+      <div class="login-form">
+        <form action="/api/auth/login" method="POST">
+          <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+          </div>
+          <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+          </div>
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
