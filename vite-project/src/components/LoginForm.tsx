@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "../constants/regex";
 import { login } from "../api/auth";
+import { AxiosError } from "axios";
 
 const LoginForm = () => {
   type LoginFormType = {
@@ -18,9 +19,14 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LoginFormType) => {
     try {
-      const response = await login(data);
-    } catch (error) {
-      setError("root", { message: error.response.data });
+      await login(data);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setError("root", { message: error.response?.data });
+      } else {
+        // Handle other types of errors
+        console.error("An unexpected error occurred:", error);
+      }
     }
   };
 
