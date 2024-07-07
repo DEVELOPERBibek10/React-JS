@@ -1,7 +1,8 @@
+import { isAuthenticated } from "./api/auth.ts";
 import Routes from "./Routes.tsx";
 
 function App() {
-  const user = false;
+  const user = isAuthenticated();
 
   return <Routes user={user} />;
 }
