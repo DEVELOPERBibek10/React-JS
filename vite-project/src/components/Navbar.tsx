@@ -3,6 +3,7 @@ import { useState } from "react";
 import Logo from "./Logo";
 
 import navMenu from "../constants/navMenu";
+import { logout } from "../api/auth";
 
 const Navbar = ({ user }: { user: boolean }) => {
   const classOfNavLink = ({ isActive }: { isActive: boolean }) => {
@@ -70,7 +71,7 @@ const Navbar = ({ user }: { user: boolean }) => {
             }`}
             id="mobile-menu-3"
           >
-            <ul className="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
+            <ul className="flex-col md:flex-row flex items-center md:space-x-8 mt-5 md:mt-0 md:text-sm md:font-medium">
               {navMenu
                 .filter(({ auth }) => (user ? auth : !auth))
                 .map(({ label, route }) => (
@@ -80,6 +81,17 @@ const Navbar = ({ user }: { user: boolean }) => {
                     </NavLink>
                   </li>
                 ))}
+              {user ? (
+                <li>
+                  <button
+                    className="middle none center rounded-xl bg-[#1C64F2] py-2.5  px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#1C64F2]/20 transition-all hover:shadow-lg hover:shadow-[#1C64F2]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true"
+                    onClick={logout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              ) : null}
             </ul>
           </div>
         </div>
