@@ -17,8 +17,7 @@ const login = async (data: {
 };
 
 const isAuthenticated = () => {
-  const token = localStorage.getItem(AUTH_TOKEN);
-  return !!token;
+  return !!localStorage.getItem(AUTH_TOKEN);
 };
 
 const logout = () => {
