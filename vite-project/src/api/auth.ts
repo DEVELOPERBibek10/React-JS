@@ -18,8 +18,11 @@ const login = async (data: {
 
 const isAuthenticated = () => {
   const token = localStorage.getItem(AUTH_TOKEN);
-  console.log(token);
   return !!token;
 };
 
-export { login, isAuthenticated };
+const logout = () => {
+  localStorage.removeItem(AUTH_TOKEN);
+};
+
+export { login, isAuthenticated, logout };
