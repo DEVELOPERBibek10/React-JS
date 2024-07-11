@@ -1,25 +1,30 @@
 import { Link } from "react-router-dom";
 import { EMAIL_REGEX } from "../constants/regex";
 import { useForm } from "react-hook-form";
+import { register as registerUser } from "../api/auth";
 
 type RegisterFormType = {
-  username: string;
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
 
 const RegisterForm = () => {
-  const { register, handleSubmit, formState, watch } =
+  const { register, handleSubmit, formState, watch, setError } =
     useForm<RegisterFormType>({
       mode: "all",
     });
-
   const password = watch("password");
   const { errors } = formState;
 
-  const onSubmit = (data: RegisterFormType) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterFormType) => {
+    try {
+      const response = await registerUser(data);
+      console.log(response);
+    } catch (error) {
+      setError("root", { message: error.response.data });
+    }
   };
 
   return (
@@ -41,7 +46,7 @@ const RegisterForm = () => {
                 type="text"
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                 id="name"
-                {...register("username", {
+                {...register("name", {
                   required: {
                     value: true,
                     message: "Name is required.",
@@ -49,7 +54,7 @@ const RegisterForm = () => {
                 })}
               />
               <p className=" mb-3 text-red-500 text-sm ml-0">
-                {errors.username?.message}
+                {errors.name?.message}
               </p>
               <label
                 htmlFor="email"
