@@ -22,7 +22,7 @@ const RegisterForm = () => {
     try {
       const response = await registerUser(data);
       console.log(response);
-    } catch (error) {
+    } catch (error: any) {
       setError("root", { message: error.response.data });
     }
   };
