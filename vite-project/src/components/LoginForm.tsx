@@ -9,7 +9,6 @@ const LoginForm = () => {
     email: string;
     password: string;
   };
-
   const { register, handleSubmit, formState, setError } =
     useForm<LoginFormType>({
       mode: "all",
@@ -25,6 +24,7 @@ const LoginForm = () => {
         setError("root", { message: error.response?.data });
       } else {
         // Handle other types of errors
+
         console.error("An unexpected error occurred:", error);
       }
     }
