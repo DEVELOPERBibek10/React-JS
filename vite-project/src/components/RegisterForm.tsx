@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { EMAIL_REGEX } from "../constants/regex";
 import { useForm } from "react-hook-form";
 import { register as registerUser } from "../api/auth";
+import { useState } from "react";
 
 type RegisterFormType = {
   name: string;
@@ -11,6 +12,8 @@ type RegisterFormType = {
 };
 
 const RegisterForm = () => {
+  const [isSucess, setIsSucess] = useState(false);
+
   const { register, handleSubmit, formState, watch, setError } =
     useForm<RegisterFormType>({
       mode: "all",
@@ -20,12 +23,24 @@ const RegisterForm = () => {
 
   const onSubmit = async (data: RegisterFormType) => {
     try {
-      const response = await registerUser(data);
-      console.log(response);
+      await registerUser(data);
+      setIsSucess(true);
     } catch (error: any) {
       setError("root", { message: error.response.data });
     }
   };
+
+  if (isSucess) {
+    return (
+      <div className="text-green-600 text-center">
+        Registration Sucessfull. Please{" "}
+        <Link className="text-blue-500" to="/login">
+          <span>login</span>
+        </Link>{" "}
+        to continue.
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,7 +135,7 @@ const RegisterForm = () => {
                   },
                 })}
               />
-              <p className=" mb-3 text-red-500 text-sm ml-0">
+              <p className="mt-0 mb-3 text-red-500 text-sm ml-0">
                 {errors.confirmPassword?.message}
               </p>
               <button
@@ -143,6 +158,11 @@ const RegisterForm = () => {
                   />
                 </svg>
               </button>
+              <div className="text-center">
+                <p className=" mt-3 mb--1 text-red-500 text-sm ml-0">
+                  {errors.root?.message}
+                </p>
+              </div>
             </div>
             <div className="py-5">
               <div className="grid grid-cols-2 gap-1">

@@ -1,12 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import config from "../config/config";
+import { LoginInput } from "../types/myauth";
 
 const AUTH_TOKEN = "authToken";
 
-const login = async (data: {
-  email: string;
-  password: string;
-}): Promise<AxiosResponse> => {
+const login = async (data: LoginInput): Promise<AxiosResponse> => {
   const response = await axios.post(`${config.apiUrl}/api/auth/login`, data);
 
   if (response.data.token) {
