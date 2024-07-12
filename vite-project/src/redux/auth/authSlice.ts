@@ -1,34 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./authActions";
+import { User } from "../../types/myauth";
 
-const initialState = {
+type AuthState = {
+  loading: boolean;
+  error: string | null;
+  user: User | null;
+  isAuthenticated: boolean;
+};
+
+const initialState: AuthState = {
   loading: false,
   error: null,
   user: null,
   isAuthenticated: false,
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload as any;
         state.isAuthenticated = true;
+        state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   },
 });
 
-// Action creators are generated for each case reducer function
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

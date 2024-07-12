@@ -1,38 +1,23 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "../constants/regex";
-import { login } from "../api/auth";
-import { AxiosError } from "axios";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../redux/auth/authActions";
+import { LoginInput } from "../types/myauth";
+import { AppDispatch, RootState } from "../redux/store";
 
 const LoginForm = () => {
-  type LoginFormType = {
-    email: string;
-    password: string;
-  };
-  const { register, handleSubmit, formState, setError } =
-    useForm<LoginFormType>({
-      mode: "all",
-    });
-
-  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState } = useForm<LoginInput>({
+    mode: "all",
+  });
 
   const { errors } = formState;
+  const dispatch = useDispatch<AppDispatch>();
 
-  const onSubmit = async (data: LoginFormType) => {
-    setLoading(true);
-    try {
-      await login(data);
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        setError("root", { message: error.response?.data });
-      } else {
-        // Handle other types of errors
-        console.error("An unexpected error occurred:", error);
-      }
-    } finally {
-      setLoading(false);
-    }
+  const { loading, error } = useSelector((state: RootState) => state.auth);
+
+  const onSubmit = async (data: LoginInput) => {
+    dispatch(loginUser(data));
   };
 
   return (
@@ -92,9 +77,7 @@ const LoginForm = () => {
                 className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
               />
               <div className="text-center">
-                <p className=" mb-3 text-red-500 text-sm ml-0">
-                  {errors.root?.message}
-                </p>
+                <p className=" mb-3 text-red-500 text-sm ml-0">{error}</p>
               </div>
             </div>
             <div className="py-5">
@@ -121,6 +104,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-function setLoading(_arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

@@ -29,12 +29,4 @@ const register = async (data: {
   return response;
 };
 
-const isAuthenticated = () => {
-  return !!localStorage.getItem(AUTH_TOKEN);
-};
-
-const logout = () => {
-  localStorage.removeItem(AUTH_TOKEN);
-};
-
-export { login, isAuthenticated, logout, register };
+export { login, register };
